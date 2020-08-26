@@ -1,0 +1,26 @@
+{
+  "name": "oh-my-hg0088",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.ts --port 28771"
+  },
+  "keywords": [],
+  "author": "lezi.chen",
+  "license": "ISC",
+  "dependencies": {
+    "cogo-toast": "^4.2.3",
+    "jquery": "^3.5.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "store2": "^2.12.0",
+    "tinykeys": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.1",
+    "@types/react": "^16.9.48",
+    "@types/react-dom": "^16.9.8",
+    "typescript": "^4.0.2"
+  }
+}

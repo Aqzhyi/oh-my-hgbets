@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "importsNotUsedAsValues": "preserve",
+    "allowUmdGlobalAccess": false,
+    "baseUrl": ".",
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["ES2015", "ESNext", "esnext.asynciterable", "dom", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "resolveJsonModule": true,
+    "rootDir": ".",
+    "outDir": "src_dist",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ESNext",
+    "allowJs": true,
+    "sourceMap": true,
+    "noEmitOnError": false,
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+  "exclude": ["**/__tests__", "**/*.{spec,test}.tsx"],
+  "include": ["src", "./*.js", "./.*.js"],
+  "files": ["tampermonkey.js"]
+}
