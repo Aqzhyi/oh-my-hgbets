@@ -4,9 +4,8 @@
 // @version      1.0.1
 // @description  try to take over the world!
 // @author       You
-// @!match        http://*.hga030.com/app/member/FT_index.php*
-// @!match        http://hga030.com/app/member/order.php?*
 // @match        http://*.hga030.com/*
+// @match        http://199.26.100.165/*
 // @grant        none
 // ==/UserScript==
 
