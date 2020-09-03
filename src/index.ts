@@ -34,7 +34,7 @@ window.addEventListener(
 )
 
 const postMessage = (key: string) => {
-  window.postMessage(key, window.origin)
+  window.postMessage(key, '*')
 }
 
 const openTrade = (doc: Document, key: string) => {
