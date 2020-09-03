@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         梁董的愛 oh my hgbet
 // @namespace    http://tampermonkey.net/
-// @version      1.0.1
+// @version      1.0.2
 // @description  try to take over the world!
 // @author       You
 // @match        http://*.hga030.com/*
