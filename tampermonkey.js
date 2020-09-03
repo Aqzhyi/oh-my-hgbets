@@ -12,13 +12,13 @@
 // @ts-check
 
 ;(function () {
-  addScript({
-    url:
-      'https://cdn.jsdelivr.net/gh/hilezir/oh-my-hgbets@v1.0.1/dist/index.js',
-  })
   // addScript({
-  //   url: 'http://localhost:28771/index.js',
+  //   url:
+  //     'https://cdn.jsdelivr.net/gh/hilezir/oh-my-hgbets@v1.0.1/dist/index.js',
   // })
+  addScript({
+    url: 'http://localhost:28771/index.js',
+  })
 })()
 
 function addScript(

@@ -40882,13 +40882,35 @@ var _jquery = _interopRequireDefault(require("jquery"));
 
 var _store = _interopRequireDefault(require("store2"));
 
+var _globalThis$module;
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var store = _store.default.namespace('__HRU__');
 
-var openTrade = function openTrade(key) {
-  var amountInput = (0, _jquery.default)('#gold');
-  var openButton = (0, _jquery.default)('#Submit');
+if ((_globalThis$module = globalThis['module']) === null || _globalThis$module === void 0 ? void 0 : _globalThis$module.hot) {
+  var _globalThis$module2;
+
+  (_globalThis$module2 = globalThis['module']) === null || _globalThis$module2 === void 0 ? void 0 : _globalThis$module2.hot.accept();
+}
+
+window.addEventListener('message', function (event) {
+  var key = event.data;
+  var targetDocument = (0, _jquery.default)('#mem_order').contents().find('#bet_order_frame').contents();
+  var doc = targetDocument.get(0);
+
+  if (typeof key === 'string' && key.toUpperCase().startsWith('F') && targetDocument.length && doc) {
+    openTrade(doc, key);
+  }
+}, false);
+
+var postMessage = function postMessage(key) {
+  window.postMessage(key, window.origin);
+};
+
+var openTrade = function openTrade(doc, key) {
+  var amountInput = (0, _jquery.default)(doc).find('#gold');
+  var openButton = (0, _jquery.default)(doc).find('#Submit');
   var amount = store.get(key);
 
   if (!amount) {
@@ -40898,10 +40920,15 @@ var openTrade = function openTrade(key) {
   }
 
   if (amountInput.length && openButton.length) {
-    _cogoToast.default.info("".concat(key, " = \uFF04").concat(amount), {
-      position: 'bottom-center'
-    });
+    try {
+      _cogoToast.default.info("".concat(key, " = \uFF04").concat(amount), {
+        position: 'bottom-center'
+      });
+    } catch (error) {
+      console.warn("\uD83D\uDCA9 Error: ".concat(error === null || error === void 0 ? void 0 : error.message), location.href);
+    }
 
+    amountInput.trigger('focus');
     amountInput.val(amount).trigger('change');
     openButton.trigger('click');
     var confirm = (0, _jquery.default)('#confirm_bet');
@@ -40929,16 +40956,16 @@ var setAmount = function setAmount(key) {
 
 (0, _tinykeys.default)(window, {
   F1: function F1(event) {
-    return openTrade(event.key);
+    return postMessage(event.key);
   },
   F2: function F2(event) {
-    return openTrade(event.key);
+    return postMessage(event.key);
   },
   F3: function F3(event) {
-    return openTrade(event.key);
+    return postMessage(event.key);
   },
   F4: function F4(event) {
-    return openTrade(event.key);
+    return postMessage(event.key);
   },
   'Shift+F1': function ShiftF1(event) {
     return setAmount(event.key);
@@ -40979,9 +41006,9 @@ var checkedAssets, assetsToAccept;
 var parent = module.bundle.parent;
 
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
-  var hostname = "" || location.hostname;
+  var hostname = "localhost" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53646" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61593" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

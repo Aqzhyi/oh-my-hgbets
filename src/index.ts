@@ -5,9 +5,41 @@ import Store from 'store2'
 
 const store = Store.namespace('__HRU__')
 
-const openTrade = (key: string) => {
-  const amountInput = $<HTMLInputElement>('#gold')
-  const openButton = $<HTMLSpanElement>('#Submit')
+if (globalThis['module']?.hot) {
+  globalThis['module']?.hot.accept()
+}
+
+window.addEventListener(
+  'message',
+  event => {
+    const key = event.data
+
+    const targetDocument = $('#mem_order')
+      .contents()
+      .find('#bet_order_frame')
+      .contents()
+
+    const doc = targetDocument.get(0) as Document
+
+    if (
+      typeof key === 'string' &&
+      key.toUpperCase().startsWith('F') &&
+      targetDocument.length &&
+      doc
+    ) {
+      openTrade(doc, key)
+    }
+  },
+  false,
+)
+
+const postMessage = (key: string) => {
+  window.postMessage(key, window.origin)
+}
+
+const openTrade = (doc: Document, key: string) => {
+  const amountInput = $(doc).find<HTMLInputElement>('#gold')
+  const openButton = $(doc).find<HTMLSpanElement>('#Submit')
 
   const amount = store.get(key)
 
@@ -17,7 +49,13 @@ const openTrade = (key: string) => {
   }
 
   if (amountInput.length && openButton.length) {
-    cagoToast.info(`${key} = ＄${amount}`, { position: 'bottom-center' })
+    try {
+      cagoToast.info(`${key} = ＄${amount}`, { position: 'bottom-center' })
+    } catch (error) {
+      console.warn(`💩 Error: ${error?.message}`, location.href)
+    }
+
+    amountInput.trigger('focus')
 
     amountInput.val(amount).trigger('change')
 
@@ -46,10 +84,10 @@ const setAmount = (key: string) => {
 }
 
 tinykeys(window, {
-  F1: event => openTrade(event.key),
-  F2: event => openTrade(event.key),
-  F3: event => openTrade(event.key),
-  F4: event => openTrade(event.key),
+  F1: event => postMessage(event.key),
+  F2: event => postMessage(event.key),
+  F3: event => postMessage(event.key),
+  F4: event => postMessage(event.key),
   'Shift+F1': event => setAmount(event.key),
   'Shift+F2': event => setAmount(event.key),
   'Shift+F3': event => setAmount(event.key),
