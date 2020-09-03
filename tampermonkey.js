@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         梁董的愛 oh my hgbet
 // @namespace    http://tampermonkey.net/
-// @version      1.0.2
+// @version      1.0.3
 // @description  try to take over the world!
 // @author       You
 // @match        http://*.hga030.com/*
@@ -14,7 +14,7 @@
 ;(function () {
   addScript({
     url:
-      'https://cdn.jsdelivr.net/gh/hilezir/oh-my-hgbets@v1.0.2/dist/index.js',
+      'https://cdn.jsdelivr.net/gh/hilezir/oh-my-hgbets@v1.0.3/dist/index.js',
   })
   // addScript({
   //   url: 'http://localhost:28771/index.js',
